@@ -1,17 +1,26 @@
-#Game Closure Framework Sample Game.
+# Mini Rocket
+
+## Game Closure Framework Sample Game.
 
 This is a fun test game build in the Game Closure framework.
-[Game Walk-Through Guide](http://docs.gameclosure.com/guide/game-walkthrough.html).
 
-##Prerequisites:
-You need devkit installed to run this game locally. Please follow the devkit
-installation instructions.
+## Instructions:
+Tap screen to launch rocket.  Move finger left right to move rocket.  Avoid things, collect other things.
 
-##Modules Used:
+## Install
+install npm
+npm install node -g
+npm install devkit --save
+devkit install
+devkit serve
+
+* NOTE: some bash files paths are not functional in windows.  Compile in linux / iOS
+
+### Modules Used:
 
 Clone this game:
-`git clone git@github.com:gameclosure/whack-that-mole whackthatmole`
+`git clone git@https://github.com/jjwallace/mini-rocket.git`
 
-##Play the Game:
+## Play the Game:
 [Play in the
-Browser](http://storage.googleapis.com/devkit-example-games/whackthatmole/index.html)
+Browser](http://no link)
