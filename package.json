@@ -1,0 +1,27 @@
+{
+  "name": "mini-rocket",
+  "version": "1.0.0",
+  "description": "![Mini Rocket](http://storage.googleapis.com/devkit-example-games/whackthatmole/whackthatmole_screenshot.png)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "NODE_ENV=production jsio-webpack",
+    "watch": "jsio-webpack --watch",
+    "serve": "jsio-webpack serve --hot",
+    "postinstall": "jsio-webpack install-libs --submodules"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "devkit": "^3.1.3",
+    "inherits": "^2.0.3",
+    "js.io": "^3.3.0",
+    "jsio": "^2.2.5",
+    "lru-cache": "^4.1.2",
+    "node": "^9.11.0",
+    "sigmund": "^1.0.1"
+  },
+  "devDependencies": {
+    "jsio-webpack": "git+https://github.com/jsio-private/jsio-webpack"
+  }
+}
