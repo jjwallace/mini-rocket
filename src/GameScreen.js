@@ -10,7 +10,8 @@ import modules.entities.Entity as Entity;
 
 //Components
 import src.component.Rocket as Rocket;
-//import src.component.InputView as InputView;
+import src.component.Player as Player;
+import src.component.InputView as InputView;
 //import src.component.Balloon as Balloon;
 
 //Main Variables
@@ -37,6 +38,7 @@ var rocketX = 0;
 //Game Objects
 var app;
 var rocket;
+var player;
 
 exports = Class(View, function (supr) {
 	this.init = function (opts) {
@@ -77,6 +79,7 @@ exports = Class(View, function (supr) {
         //this.parallax = new Parallax({ parent: this.bgLayer });
         
         this.player = new Player({ parent: this.elementLayer });
+        //this.addSubview(this.player);
         
         //Game Play Controls
         this.inputLayer = new InputView({ parent: this});
@@ -88,70 +91,71 @@ exports = Class(View, function (supr) {
 		//this.player.update(dt);
 	};
     
-    var Player = Class(Entity, function() {
-        var sup = Entity.prototype;
-
-        this.init = function(opts) {
-            sup.init.call(this, opts);
-            this.inputStartX = 0;
-            this.animating = false;
-
-            console.log('Player Created');
-        };
-
-        this.reset = function() {
-
-        };
-
-        this.startInput = function() {
-
-        };
-
-        this.updateInput = function(dx, dy) {
-            //console.log("X location", dx);
-            rocketX = dx;
-        };
-      
-        this.tick = function(dt) {
-          if (this.gameActive == true && this.playerAlive == true) {
-            //dt = Math.min(this.model.timeMult * dt, MAX_TICK);
-            var movement = ((rocket.style.x - rocketX) / 30);
-            rocket.style.x -= movement;
-            rocket.style.r = -(movement/10);
-          }
-        };
-
-        this.onDeath = function() {
-            this.view.style.visible = false;
-        };
-    });
-
-    this.reset = function(data) {
-//		this.player.reset();
-	};
-
-    var InputView = Class(View, function() {
-        var sup = View.prototype;
-
-        this.init = function(opts) {
-            opts.infinite = true;
-            sup.init.call(this, opts);
-            console.log("Init Input");
-        };
-        
-        sup.onInputStart = function(event, cartesian) {
-          sup.gameActive = true;
-          console.log("START GAME",sup.gameActive);
-        };
-
-        sup.onInputMove = function(event, cartesian) {
-    		if (this.gameActive === false || this.playerAlive === false) {
-    			return;
-    		}
-
-            var dx = cartesian.x;
-            var dy = cartesian.y;
-            app.player.updateInput(dx, dy);
-        };
-    });
+//    var Player = Class(Entity, function() {
+//        var sup = Entity.prototype;
+//
+//        this.init = function(opts) {
+//            sup.init.call(this, opts);
+//            this.inputStartX = 0;
+//            this.animating = false;
+//
+//            console.log('Player Created');
+//        };
+//
+//        this.reset = function() {
+//            
+//        };
+//
+//        this.startInput = function(isOn) {
+//            app.gameActive = isOn;
+//            console.log("START GAME local",isOn);
+//            console.log("START GAME global",app.gameActive);
+//        };
+//
+//        this.updateInput = function(dx, dy) {
+//            console.log("X location", dx);
+//            rocketX = dx;
+//        };
+//      
+//        this.tick = function(dt) {
+//          if (app.gameActive == true && app.playerAlive == true) {
+//            //dt = Math.min(this.model.timeMult * dt, MAX_TICK);
+//            var movement = ((rocket.style.x - rocketX) / 30);
+//            rocket.style.x -= movement;
+//            rocket.style.r = -(movement/10);
+//          }
+//        };
+//
+//        this.onDeath = function() {
+//            this.view.style.visible = false;
+//        };
+//    });
+//    
+//    this.reset = function(data) {
+////		this.player.reset();
+//	};
+//
+//    var InputView = Class(View, function() {
+//        var sup = View.prototype;
+//
+//        this.init = function(opts) {
+//            opts.infinite = true;
+//            sup.init.call(this, opts);
+//            console.log("Init Input");
+//        };
+//        
+//        sup.onInputStart = function(event, cartesian) {
+//          app.player.startInput(true);
+//        };
+//        
+//        sup.onInputMove = function(event, cartesian) {
+//    		if (app.gameActive === false || app.playerAlive === false) {
+//    			return;
+//    		}
+//
+//            var dx = cartesian.x;
+//            var dy = cartesian.y;
+//            app.player.updateInput(dx, dy);
+//        };
+//    });
 });

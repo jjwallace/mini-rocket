@@ -1,22 +1,45 @@
-exports.choose = function(arr) {
-	return arr[floor(random() * arr.length)];
-};
+import ui.View as View;
+import ui.ImageView as ImageView;
 
-exports.Update function() {
-	var sup = Entity.prototype;
+//Modules
+import modules.entities.Entity as Entity;
+    
+    var Player = exports = Class(Entity, function(supr) {
+        var sup = Entity.prototype;
 
-	this.reset = function() {
+        this.init = function(opts) {
+            sup.init.call(this, opts);
+            this.inputStartX = 0;
+            this.animating = false;
 
-	};
+            console.log('Player Created');
+        };
 
-	this.startInput = function() {
-		this.inputStartX = this.x;
-	};
+        this.reset = function() {
+            
+        };
 
-	this.updateInput = function(dx, dy) {
-		
-	};
+        this.startInput = function(isOn) {
+            supr.gameActive = isOn;
+            console.log("START GAME local",isOn);
+            console.log("START GAME global",app.gameActive);
+        };
 
-	this.onDeath = function() {
+        this.updateInput = function(dx, dy) {
+            //console.log("X location", dx);
+            supr.rocketX = dx;
+        };
+      
+        this.tick = function(dt) {
+          if (supr.gameActive == true && supr.playerAlive == true) {
+            //dt = Math.min(this.model.timeMult * dt, MAX_TICK);
+            var movement = ((supr.rocket.style.x - supr.rocketX) / 30);
+            supr.rocket.style.x -= movement;
+            supr.rocket.style.r = -(movement/10);
+          }
+        };
 
-}
+        this.onDeath = function() {
+            this.view.style.visible = false;
+        };
+    });
