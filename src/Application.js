@@ -32,7 +32,7 @@ exports = Class(GC.Application, function () {
       scale: device.width / 320
     });
 
-    rootView.push(titlescreen);
+    rootView.push(gamescreen);
     
     //Game States
     titlescreen.on('titlescreen:start', function () {

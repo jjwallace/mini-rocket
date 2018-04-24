@@ -3,26 +3,34 @@ import ui.View;
 import ui.ImageView;
 import ui.resource.Image as Image;
 
-var img_rocket = new Image({url:     "resources/images/img_rocket_med.png"});
+var spriteUrl = "resources/images/img_balloon0002.png";
+var sprite = new Image({url: spriteUrl});
 
-class Balloon {
-    
-  constructor(height, width) {
-    this.name = 'Polygon';
-    this.height = height;
-    this.width = width;
-  }
+exports = Class(View, function (supr) {
 
-  // Simple class instance methods using short-hand method
-  // declaration
-  sayName() {
-    ChromeSamples.log('Hi, I am a ', this.name + '.');
-  }
+	this.init = function (opts) {
+		supr(this, 'init', [opts]);
+		this.alive = true;
+		this.activeGame = true;
+		this.activeInput = false;
+		this.build();
 
-  sayHistory() {
-    ChromeSamples.log('"Polygon" is derived from the Greek polus (many) ' +
-      'and gonia (angle).');
-  }
+	};
 
-  // We will look at static and subclassed methods shortly
-}
+	this.build = function () {
+		var width = sprite.getWidth();
+		var height = sprite.getHeight();
+		var rocket = new ui.ImageView({
+			superview: this,
+			image: sprite,
+			x: -width / 2,
+			y: -height / 2,
+			url: spriteUrl,
+			width: width,
+			height: height,
+			anchorX: width / 2,
+			/*ANCHOR NOT WORKING*/
+			anchorY: height / 2
+		});
+	};
+});

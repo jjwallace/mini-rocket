@@ -11,7 +11,6 @@ import modules.entities.Entity as Entity;
             sup.init.call(this, opts);
             this.inputStartX = 0;
             this.animating = false;
-
             console.log('Player Created');
         };
 
