@@ -19,13 +19,13 @@ var bg = ["background1.png",
 			"background4.png",
 			"background5.png",
 			"background5.png",
-			"background5.png",
+			"background6.png",
 			"background5.png",
 			"background5.png",
 			"background5.png",
 			"background5.png"];
 
-var bgMax = ( 5 ) - 1;
+var bgMax = ( 10 ) - 1;
 		   //MAX
 
 exports = Class(View, function (supr) {
@@ -74,14 +74,12 @@ exports = Class(View, function (supr) {
 			if(backgroundA.style.y > config.gameHeight + 10){
 				
 				//Count Background Tiles
-				countBackground ++;
+				if(bgMax > countBackground){countBackground ++;}
 				
 				//Swap Background Tile
 				currentTile = 2;
 				var spriteUrl = bgRoot + bg[countBackground];
-				//var sprite = new Image({url: spriteUrl});
-				backgroundB.style.url = spriteUrl;
-				//backgroundB.style.image = sprite;
+				backgroundA.setImage(spriteUrl);
 			}
 		}else{
 			backgroundB.style.y += moveUnit;
@@ -89,15 +87,12 @@ exports = Class(View, function (supr) {
 			if(backgroundB.style.y > config.gameHeight + 10){
 				
 				//Count Background Tiles
-				countBackground ++;
-				console.log(countBackground);
+				if(bgMax > countBackground){countBackground ++;}
 				
 				//Swap Background Tile
 				currentTile = 1;
 				var spriteUrl = bgRoot + bg[countBackground];
-				//var sprite = new Image({url: spriteUrl});
-				backgroundA.style.url = spriteUrl;
-				//backgroundA.style.image = sprite;
+				backgroundB.setImage(spriteUrl);
 			}
 		}
 		
@@ -108,11 +103,9 @@ exports = Class(View, function (supr) {
 		backgroundB.style.y = backgroundA.style.y - backgroundA.style.height;
 		
 		var spriteUrl = bgRoot + bg[0];
-		var sprite = new Image({url: spriteUrl});
-		backgroundA.style.image = sprite;
+		backgroundA.setImage(sprite);
 		
 		var spriteUrl = bgRoot + bg[1];
-		var sprite = new Image({url: spriteUrl});
-		backgroundB.style.image = sprite;
+		backgroundB.setImage(spriteUrl);
 	}
 });
