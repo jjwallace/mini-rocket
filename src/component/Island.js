@@ -18,7 +18,7 @@ exports = Class(View, function (supr) {
 	};
 
 	this.build = function () {
-		var spriteUrl = "resources/images/img_island_small.png"; 
+		var spriteUrl = "resources/images/img_island.png"; 
 		var sprite = new Image({url: spriteUrl});
 		var width = sprite.getWidth();
 		var height = sprite.getHeight();

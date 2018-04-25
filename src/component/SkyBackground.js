@@ -79,8 +79,9 @@ exports = Class(View, function (supr) {
 				//Swap Background Tile
 				currentTile = 2;
 				var spriteUrl = bgRoot + bg[countBackground];
-				var sprite = new Image({url: spriteUrl});
-				backgroundB.style.image = sprite;
+				//var sprite = new Image({url: spriteUrl});
+				backgroundB.style.url = spriteUrl;
+				//backgroundB.style.image = sprite;
 			}
 		}else{
 			backgroundB.style.y += moveUnit;
@@ -89,12 +90,14 @@ exports = Class(View, function (supr) {
 				
 				//Count Background Tiles
 				countBackground ++;
+				console.log(countBackground);
 				
 				//Swap Background Tile
 				currentTile = 1;
 				var spriteUrl = bgRoot + bg[countBackground];
-				var sprite = new Image({url: spriteUrl});
-				backgroundA.style.image = sprite;
+				//var sprite = new Image({url: spriteUrl});
+				backgroundA.style.url = spriteUrl;
+				//backgroundA.style.image = sprite;
 			}
 		}
 		
