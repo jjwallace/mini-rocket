@@ -6,9 +6,9 @@ import ui.StackView as StackView;
 import src.config as config;
 
 //user imports
-import src.TitleScreen as TitleScreen;
-import src.GameScreen as GameScreen;
-import src.soundcontroller as soundcontroller;
+import src.state.TitleScreen as TitleScreen;
+import src.state.GameScreen as GameScreen;
+import src.utilities.soundcontroller as soundcontroller;
 
 //Calculate stackview dimensions
 const constGameWidth = 320;

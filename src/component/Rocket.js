@@ -43,6 +43,7 @@ exports = Class(View, function (supr) {
 	
 	this.animate = function(){
 		rocket.startAnimation("go");
+		rocket.defaultAnimation = "go";
 	}
 });
 		
