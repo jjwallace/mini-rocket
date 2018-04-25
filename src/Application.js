@@ -1,6 +1,10 @@
 //sdk imports
 import device;
 import ui.StackView as StackView;
+
+//Config
+import src.config as config;
+
 //user imports
 import src.TitleScreen as TitleScreen;
 import src.GameScreen as GameScreen;
@@ -26,8 +30,8 @@ exports = Class(GC.Application, function () {
       superview: this,
       x: 0,
       y: 0,
-      width: 320,
-      height: 480,
+      width: config.gameWidth,
+      height: config.gameHeight,
       clip: true,
       scale: device.width / 320
     });

@@ -1,6 +1,4 @@
-
-
-
+//Break out player Calculations here
 
 exports.moveShipX = function(app, rocketLocationX) {
 	//Launch Calcs 

@@ -5,8 +5,6 @@ import ui.View as View;
 import ui.ImageView;
 import ui.resource.Image as Image;
 
-
-
 exports = Class(View, function (supr) {
 
 	this.init = function (opts, spriteUrl) {

@@ -9,20 +9,15 @@ import src.config as config;
 //Modules
 import modules.entities.Entity as Entity;
 //import modules.entities.EntityPool as EntityPool;
-//import modules.Parallax as Parallax;
 
 //Components
-//import src.component.InputView as InputView;
-//import src.component.Balloon as Balloon;
 import src.component.Rocket as Rocket;
-import src.component.LaunchPad as LaunchPad;
 import src.component.Island as Island;
 import src.component.SkyBackground as SkyBackground;
 import src.component.CloudPatch as CloudPatch;
 
 //Component Utilities
 import src.component.Player.PlayerUtilities as PlayerUtilities;
-
 
 //Main Variables
 var score = 0;
@@ -37,17 +32,16 @@ import src.config as config;
 
 //Game Vars
 var rocketX = 0;
-var turnSpeed = 100;
+var turnSpeed = 200;
 const turnSpeedMax = 30;
-var climbAcc = 0.1;
+var climbAcc = 0.04;
 var climbSpeed = 0;
-const climbSpeedMax = 10;
+const climbSpeedMax = 6;
 var altitude = 0;
 
 //Game Objects
 var app;
 var rocket;
-var launchPad;
 var island;
 var skyBackground;
 var cloudPatch;
@@ -77,8 +71,6 @@ exports = Class(View, function (supr) {
 		this.style.width = 60;
         this.style.height = 60;
 
-		//var balloon = new Balloon(10,10);
-
 		this.elementLayer = new View({
 			parent: this.bgLayer,
 			zIndex: 10
@@ -88,6 +80,12 @@ exports = Class(View, function (supr) {
 //		cloudPatch.style.x = config.gameWidth / 2;
 //		cloudPatch.style.y = altitude - 2000;
 //		this.addSubview(cloudPatch);
+		
+		skyBackground = new SkyBackground();
+		skyBackground.style.x = 0; skyBackground.style.y = 0;
+		skyBackground.style.width = config.gameWidth;
+		skyBackground.style.height = config.gameHeight;
+		this.addSubview(skyBackground);
 			
 		rocket = new Rocket();
 		rocket.style.x = config.gameWidth / 2;
@@ -99,21 +97,12 @@ exports = Class(View, function (supr) {
 		island.style.y = config.gameHeight - 60;
 		this.addSubview(island);
 		
-//		skyBackground = new SkyBackground();
-//		skyBackground.style.x = 0; SkyBackground.style.y = 0;
-//		skyBackground.style.width = config.gameWidth;
-//		skyBackground.style.height = config.gameHeight;
-//		this.addSubview(skyBackground);
+		
 		
 		//this.parallax = new Parallax({ parent: this.bgLayer });
 
 		this.player = new Player({
 			parent: this.elementLayer
-		});
-
-		//Game Play Controls
-		this.inputLayer = new InputView({
-			parent: this
 		});
 
 	};
@@ -125,6 +114,7 @@ exports = Class(View, function (supr) {
 			altitude += climbSpeed;
 			//cloudPatch.style.y = -cloudPatchLocation + altitude
 			island.style.y += climbSpeed;
+			skyBackground.move(climbSpeed);
 		}
 	};
 
@@ -180,7 +170,6 @@ exports = Class(View, function (supr) {
 			opts.infinite = true;
 			sup.init.call(this, opts);
 			console.log("Init Input");
-			//launchPad.sprite.startAnimation("walk");
 		};
 
 		sup.onInputStart = function (event, cartesian) {
