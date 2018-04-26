@@ -19,7 +19,7 @@ import src.component.Meteor as Meteor;
 import src.component.Explosion as Explosion;
 
 //Utilities
-import src.utilitys.soundcontroller as soundcontroller;
+import src.utility.soundcontroller as soundcontroller;
 
 //Main Variables
 var score = 0;
@@ -200,7 +200,6 @@ exports = Class(View, function (supr) {
 
 		this.updateInput = function (dx, dy) {
 			rocketX = dx;
-			
 		};
 
 		this.update = function (dt) {
@@ -257,7 +256,7 @@ exports = Class(View, function (supr) {
 		sup.onInputStart = function (event, cartesian) {
 			if(gameActive == false){
 				app.player.startInput();
-			}else if(altitude > 300 ** playerAlive == false){
+			}else if(altitude > 200 && playerAlive == false){
 				app.reset();
 			}
 		};
