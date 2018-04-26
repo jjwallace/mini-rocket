@@ -19,7 +19,7 @@ import src.component.Meteor as Meteor;
 import src.component.Explosion as Explosion;
 
 //Utilities
-import src.utilities.soundcontroller as soundcontroller;
+import src.utilitys.soundcontroller as soundcontroller;
 
 //Main Variables
 var score = 0;

@@ -8,7 +8,7 @@ import src.config as config;
 //user imports
 import src.state.TitleScreen as TitleScreen;
 import src.state.GameScreen as GameScreen;
-import src.utilities.soundcontroller as soundcontroller;
+import src.utility.soundcontroller as soundcontroller;
 
 //Calculate stackview dimensions
 const constGameWidth = 320;

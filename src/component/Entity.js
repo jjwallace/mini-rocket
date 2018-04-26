@@ -1,4 +1,5 @@
 //This Class is for a basic static world item.
+//This classes isnt used that the moment, but can be something built out to be extended by meteor and rocket.
 
 import animate;
 import ui.View as View;

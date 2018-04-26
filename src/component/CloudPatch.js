@@ -1,3 +1,5 @@
+//Cloud patch is currently not used.  It is a layering effect at 1000 altitiude that passes over the player to feal they have left the atmosphere....
+
 import animate;
 import ui.View as View;
 import ui.ImageView as ImageView;
