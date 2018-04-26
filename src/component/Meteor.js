@@ -17,8 +17,6 @@ exports = Class(View, function (supr) {
 	this.init = function (opts) {
 		supr(this, 'init', [opts]);
 		this.alive = true;
-		this.activeGame = true;
-		this.activeInput = false;
 		this.anchorX = 50;
 		this.anchorY = 50;
 		this.build();

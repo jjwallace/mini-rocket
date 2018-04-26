@@ -16,10 +16,10 @@ import src.component.Island as Island;
 import src.component.SkyBackground as SkyBackground;
 import src.component.CloudPatch as CloudPatch;
 import src.component.Meteor as Meteor;
-import src.utilities.soundcontroller as soundcontroller;
+import src.component.Explosion as Explosion;
 
-//Component Utilities
-import src.component.Player.PlayerUtilities as PlayerUtilities;
+//Utilities
+import src.utilities.soundcontroller as soundcontroller;
 
 //Main Variables
 var score = 0;
@@ -51,6 +51,7 @@ var island;
 var skyBackground;
 var cloudPatch;
 var meteors = [];
+var explosion;
 var cloudPatchLocation = 2000;
 
 var music = soundcontroller.getSound();
@@ -83,11 +84,6 @@ exports = Class(View, function (supr) {
 			parent: this.bgLayer,
 			zIndex: 10
 		});
-
-//		cloudPatch = new CloudPatch();
-//		cloudPatch.style.x = config.gameWidth / 2;
-//		cloudPatch.style.y = altitude - 2000;
-//		this.addSubview(cloudPatch);
 		
 		this.bgLayer = new View({
 			parent: this.view,
@@ -103,22 +99,9 @@ exports = Class(View, function (supr) {
 		skyBackground.style.height = config.gameHeight;
 		this.addSubview(skyBackground);
 			
-		rocket = new Rocket();
-		rocket.style.x = config.gameWidth / 2;
-		rocket.style.y = config.gameHeight - 95;
-		this.addSubview(rocket);
-		
 		this.elementLayer = new View({
 			parent: this.bgLayer
 		});
-			
-		for (var i = 0; i < meteorCount; i++) {
-			var meteor = new Meteor();
-			meteor.style.x = 40 + i * 40;
-			meteor.style.y = 80 * i;
-			this.addSubview(meteor);
-			meteors.push(meteor)
-		}
 		
 		island = new Island({ parent: this.bgLayer });
 		island.style.x = config.gameWidth / 2;
@@ -126,7 +109,25 @@ exports = Class(View, function (supr) {
 		this.addSubview(island);
 		
 		this.player = new Player({ parent: this.elementLayer});
-
+		
+		for (var i = 0; i < meteorCount; i++) {
+			var meteor = new Meteor();
+			meteor.style.x = -200;
+			meteor.style.y = 80 * i;
+			this.addSubview(meteor);
+			meteors.push(meteor)
+		}
+		
+		rocket = new Rocket();
+		rocket.style.x = config.gameWidth / 2;
+		rocket.style.y = config.gameHeight - 95;
+		this.addSubview(rocket);
+		
+		explosion = new Explosion();
+		explosion.style.x = config.gameWidth / 2;
+		explosion.style.y = config.gameHeight - 95;
+		this.addSubview(explosion);
+		
 		music.play('loopy');
 	};
 
@@ -148,7 +149,11 @@ exports = Class(View, function (supr) {
 				}
 				if(meteors[i].style.y > config.gameHeight){
 					meteors[i].style.y = -100;
-					meteors[i].style.x = Math.floor(Math.random() * config.gameWidth); 
+					if(altitude < 2500){
+						meteors[i].style.x = Math.floor(Math.random() * -config.gameWidth - 200);
+					}else{
+						meteors[i].style.x = Math.floor(Math.random() * config.gameWidth); 
+					}
 				}
 				if(meteors[i].checkCollision( rocket.style.x, rocket.style.y) == true){
 					this.gameOver();
@@ -160,6 +165,10 @@ exports = Class(View, function (supr) {
 	this.gameOver = function (i){
 		if(playerAlive == true){
 			playerAlive = false;
+			explosion.explode(rocket.style.x,rocket.style.y);
+			rocket.style.x = -200;//Again Visiblity style isnt referenced in docs
+			var sound = soundcontroller.getSound();
+			sound.play('explode');
 		}
 	};
 	
@@ -200,7 +209,7 @@ exports = Class(View, function (supr) {
 				if(climbSpeed < climbSpeedMax){
 					climbSpeed += climbAcc
 				};
-				if(turnSpeedMax < turnSpeed){turnSpeed -= 0.5};
+				if(turnSpeedMax < turnSpeed){turnSpeed -= 2};
 
 				//Launch Object Movement
 				var movement = ((rocket.style.x - rocketX) / turnSpeed);
@@ -225,6 +234,10 @@ exports = Class(View, function (supr) {
 		skyBackground.reset();
 		music.play('loopy');
 		
+		for (var i = 0; i < meteorCount; i++) {
+				meteors[i].style.x = -200; //Again Visiblity style isnt referenced in docs
+		}
+		
 		//Reset Player Vars
 		rocketX = config.player.rocketX;
 		turnSpeed = config.player.turnSpeed;
@@ -244,7 +257,7 @@ exports = Class(View, function (supr) {
 		sup.onInputStart = function (event, cartesian) {
 			if(gameActive == false){
 				app.player.startInput();
-			}else if(altitude > 1000){
+			}else if(altitude > 300 ** playerAlive == false){
 				app.reset();
 			}
 		};

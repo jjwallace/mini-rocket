@@ -21,6 +21,9 @@ exports.getSound = function () {
           background: true,
           loop: true
         },
+		explode: {
+          path: 'effect',
+        },
         whack: {
           path: 'effect',
           background: false
