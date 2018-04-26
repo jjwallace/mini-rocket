@@ -20,9 +20,7 @@ exports = Class(View, function (supr) {
 		this.activeInput = false;
 		this.anchorX = 50;
 		this.anchorY = 50;
-		console.log(width, height);
 		this.build();
-		console.log("BUILD: ", spriteUrl);
 	};
 
 	this.build = function () {

@@ -25,8 +25,8 @@ var bg = ["background1.png",
 			"background5.png",
 			"background5.png"];
 
+//Max backgrounds, repeats after this point.
 var bgMax = ( 10 ) - 1;
-		   //MAX
 
 exports = Class(View, function (supr) {
 	this.init = function (opts) {
@@ -95,7 +95,6 @@ exports = Class(View, function (supr) {
 				backgroundB.setImage(spriteUrl);
 			}
 		}
-		
 	}
 	
 	this.reset = function(){
@@ -103,9 +102,12 @@ exports = Class(View, function (supr) {
 		backgroundB.style.y = backgroundA.style.y - backgroundA.style.height;
 		
 		var spriteUrl = bgRoot + bg[0];
-		backgroundA.setImage(sprite);
+		backgroundA.setImage(spriteUrl);
 		
 		var spriteUrl = bgRoot + bg[1];
 		backgroundB.setImage(spriteUrl);
+		
+		currentTile = 1;
+		countBackground = 0;
 	}
 });
