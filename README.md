@@ -23,4 +23,13 @@ Clone this game:
 
 ## Play the Game:
 [Play in the
-Browser](http://no link)
+Browser](http://no link) - uploading soon
+
+## Coding Roadblocks and Temporary Solutions.
+*Entity system did not render sprites.  Built out collision detection however sprite anchors are not giving a good centerpoint.
+*Sprite.style.visible = false; //Does not hide sprite, temporarily using (x offset)
+*Animation documentation only notes temporary animations but not animation switching, some effects are mission.
+
+## Framework Docs:
+[Game Closure Framework](https://web.archive.org/web/20170910043517/http://docs.gameclosure.com:80/)
+
